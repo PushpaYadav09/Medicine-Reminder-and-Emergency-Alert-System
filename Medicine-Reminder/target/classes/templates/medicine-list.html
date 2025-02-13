@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Medicine Reminder</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h1>Medicine List</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Dose</th>
+        <th>Time</th>
+        <th>Reminder Time</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="medicine : ${medicines}">
+        <td th:text="${medicine.id}"></td>
+        <td th:text="${medicine.name}"></td>
+        <td th:text="${medicine.dose}"></td>
+        <td th:text="${medicine.time}"></td>
+        <td th:text="${medicine.reminderTime}"></td>
+        <td>
+            <a th:href="@{/medicines/edit/{id}(id=${medicine.id})}">Edit</a> |
+            <a th:href="@{/medicines/delete/{id}(id=${medicine.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+<a href="/medicines/add">Add New Medicine</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Medicine</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h1 th:text="${medicine.id == null ? 'Add Medicine' : 'Edit Medicine'}"></h1>
+
+<form th:action="@{/medicines/save}" method="post" th:object="${medicine}">
+    <input type="hidden" th:field="*{id}">
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required><br>
+
+    <label>Dose:</label>
+    <input type="text" th:field="*{dose}" required><br>
+
+    <label>Time:</label>
+    <input type="text" th:field="*{time}" required><br>
+
+    <label>Reminder Time:</label>
+    <input type="datetime-local" th:field="*{reminderTime}" required><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<br>
+<a href="/medicines">Back to List</a>
+</body>
+</html>
